@@ -22,7 +22,7 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('address', wallet);
-  }, [wallet])
+  }, [wallet]);
 
   return (
     <div className='App'>
@@ -34,21 +34,24 @@ function App() {
       />
       <div className='content'>
         <div className='walletInfo poppins'>
-          {wallet.length === 42 && (
-            <>
-              <div>
-                <Avatar isRounded size={130} theme='image' image={wiz} />
-                <h2>{`${wallet.slice(0, 6)}...${wallet.slice(36)}`}</h2>
-              </div>
-              <PortfolioValue nativeValue={nativeValue} tokens={tokens} />
-              <div>
-                <h2>Enter wallet address & click on the <Reload style={{ fontSize: "30px", fontWeight: "600" }} /> to fetch the details.</h2>
-              </div>
-            </>
-          )}
+          <>
+            <div>
+              <Avatar isRounded size={130} theme='image' image={wiz} />
+              <h2>{`${wallet.slice(0, 6)}...${wallet.slice(36)}`}</h2>
+            </div>
+            <PortfolioValue nativeValue={nativeValue} tokens={tokens} />
+            <div>
+              <h2>
+                Enter wallet address & click on the{' '}
+                <Reload style={{ fontSize: '30px', fontWeight: '600' }} /> to
+                fetch the details.
+              </h2>
+            </div>
+          </>
         </div>
 
-        <TabList style={{color: "white"}}>
+      {wallet && wallet.length === 42 &&
+        <TabList style={{ color: 'white' }}>
           <Tab tabKey={1} tabName={'Tokens'}>
             <NativeTokens
               wallet={wallet}
@@ -84,6 +87,7 @@ function App() {
             />
           </Tab> */}
         </TabList>
+}
       </div>
     </div>
   );
